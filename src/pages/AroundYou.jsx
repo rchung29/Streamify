@@ -25,7 +25,8 @@ const AroundYou = () => {
 
     return (
         <div className='flex flex-col'>
-            <h2 className='font-semibold text-3xl text-zinc-100 text-left mt-4 mb-10'>Around You <span className='font-semibold text-red-500'>{country}</span></h2>
+            <h3 className="text-xs text-zinc-700 text-left tracking-widest">BASED ON YOUR LOCATION</h3>
+            <h2 className='font-semibold text-3xl text-zinc-100 text-left mb-10'>Around You <span className='font-semibold text-red-500'>{country}</span></h2>
             <div className='flex flex-wrap sm:justify-start justify-center gap-8'>
                 {data?.map((song, i) => (
                     <SongCard key={song.key} song={song} isPlaying={isPlaying} activeSong={activeSong} data={data} i={i}/>

@@ -12,7 +12,8 @@ const TopArtists = () => {
 
     return (
         <div className='flex flex-col'>
-            <h2 className='font-semibold text-3xl text-zinc-100 text-left mt-4 mb-10'>Discover Top Artists</h2>
+            <h3 className="text-xs text-zinc-700 text-left tracking-widest">TOP ARTISTS</h3>
+            <h2 className='font-semibold text-3xl text-zinc-100 text-left mb-10'>Discover Top Artists</h2>
             <div className='flex flex-wrap sm:justify-start justify-center gap-8'>
                 {data?.map((track) => (
                     <ArtistCard key={track.key} track={track} />
