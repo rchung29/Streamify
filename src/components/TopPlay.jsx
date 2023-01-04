@@ -11,8 +11,8 @@ import { useGetTopChartsQuery } from '../redux/services/shazamCore';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
-const TopChartCard = ({ song,i }) => (
-  <div className='w-full flex flex-row items-center hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2'>
+const TopChartCard = ({ song,i,isPlaying,activeSong,handlePauseClick,handlePlayClick }) => (
+  <div className='w-full flex flex-row items-center hover:hover:bg-red-400/30 duration-200 ease-in-out py-2 p-4 rounded-lg cursor-pointer mb-2'>
     <h3 className='font-semibold text-base text-zinc-300 mr-3'>{i + 1}.</h3>
     <div className='flex-1 flex flex-row justify-between items-center'>
       <img src={song?.images.coverart} alt="song?.title" className='w-20 h-20 rounded-lg' />
@@ -20,11 +20,12 @@ const TopChartCard = ({ song,i }) => (
         <Link to={`/songs/${song.key}`}>
           <p className='text-xl font-semibold text-zinc-100'>{song?.title}</p>
         </Link>
-        <Link to={`/songs/${song?.artists[0].adamid}`}>
+        <Link to={`/artists/${song?.artists[0].adamid}`}>
           <p className='text-base text-zinc-500 mt-1'>{song?.subtitle}</p>
         </Link>
       </div>
     </div>
+    <PlayPause isPlaying={isPlaying} activeSong={activeSong} song={song} handlePause={handlePauseClick} handlePlay={handlePlayClick} />
   </div>
 )
 
@@ -43,7 +44,7 @@ const TopPlay = () => {
   const handlePauseClick = () => {
     dispatch(playPause(false));
   }
-  const handlePlayClick = () => {
+  const handlePlayClick = (song,i) => {
     dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   }
@@ -59,14 +60,14 @@ const TopPlay = () => {
         </div>
         <div className='mt-4 flex flex-col gap-1'>
           {topPlays?.map((song, i) => (
-            <TopChartCard key={song.key} song={song} i={i} />
+            <TopChartCard key={song.key} song={song} i={i} isPlaying={isPlaying} activeSong={activeSong} handlePauseClick={handlePauseClick} handlePlayClick={()=>handlePlayClick(song,i)} />
           ))}
         </div>
       </div>
       <div className='w-full flex flex-col mt-8'>
         <div className='flex flex-row justify-between items-center'>
           <h2 className='text-zinc-100 font-bold text-2xl'>Top Artists</h2>
-          <Link to="/top-charts">
+          <Link to="/top-artists">
             <p className='text-zinc-500 text-base cursor-pointer'>See More</p>
           </Link>
         </div>

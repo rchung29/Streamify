@@ -8,7 +8,7 @@ import { links } from '../assets/constants';
 const NavLinks = () => (
   <div className="mt-10">
     {links.map((item) => (
-      <NavLink key={item.name} to={item.path} className="flex flex-row justify-center items-center my-8 text-sm font-medium text-gray-500 hover:text-gray-100 duration-150 ease-in-out" onClick={() => handleClick && handleClick()}>
+      <NavLink key={item.name} to={item.to} className="flex flex-row justify-center items-center my-8 text-sm font-medium text-gray-500 hover:text-gray-100 duration-150 ease-in-out" onClick={() => handleClick && handleClick()}>
         <item.icon className="w-6 h-6 mr-2 hover:text-white"></item.icon>
         {item.name}
       </NavLink>
